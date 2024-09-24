@@ -2,10 +2,14 @@
 
 <br>
 
-## compile typescript
+## Install TypeScript
 
 ```
 npm install -g typescript
+```
 
-tsc file_name
+## Compile TypeScript
+
+```
+tsc js_file_name
 ```
