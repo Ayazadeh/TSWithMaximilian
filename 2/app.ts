@@ -1,12 +1,17 @@
 const person: {
   name: string;
   age: number;
-  hobbies: string[]
+  hobbies: string[],
+  role: [number, string] // tuple
 } = {
   name: "Mohammad",
   age: 25,
-  hobbies: ['Sports', 'Cooking']
+  hobbies: ['Sports', 'Cooking'],
+  role: [2, 'author'] // tuple
 };
+
+// person.role[1] = 20; // error
+// person.role = ['r', 2]; // error
 
 console.log(person.name);
 
