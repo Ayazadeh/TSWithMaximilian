@@ -12,3 +12,10 @@ var combineValues;
 combineValues = add;
 // combineValues = printResult; // error
 console.log(combineValues(8, 8));
+function addAndHandle(n1, n2, cb) {
+    var result = n1 + n2;
+    cb(result);
+}
+addAndHandle(10, 20, function (result) {
+    console.log(result);
+});
