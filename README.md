@@ -33,5 +33,7 @@ tsc -w
 
 ## tsconfig.json file
 
-* `"target": "es6"` will compile the ts file to es6
+* `"target": "es6"` will compile the ts files to es6
 * `"sourceMap": true` will create a `js.map` file to help debugging
+* `"outDir": "./dist"` will compile the ts files to the `dist` directory
+* `"rootDir": "./src"` will compile the ts files from the `src` directory
