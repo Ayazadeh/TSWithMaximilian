@@ -29,3 +29,8 @@ or watch them by using:
 ```
 tsc -w
 ```
+<br>
+
+## tsconfig.json file
+
+* `"sourceMap": true` will create a `js.map` file to help debugging

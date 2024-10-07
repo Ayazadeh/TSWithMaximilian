@@ -1,3 +1,6 @@
 "use strict";
-const userName = 'Mohammad';
-console.log('test ', userName);
+const button = document.querySelector('button');
+button.addEventListener('click', () => {
+    console.log('You clicked me!');
+});
+//# sourceMappingURL=app.js.map
