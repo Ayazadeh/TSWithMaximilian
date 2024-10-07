@@ -33,4 +33,5 @@ tsc -w
 
 ## tsconfig.json file
 
+* `"target": "es6"` will compile the ts file to es6
 * `"sourceMap": true` will create a `js.map` file to help debugging
