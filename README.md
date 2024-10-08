@@ -37,3 +37,4 @@ tsc -w
 * `"sourceMap": true` will create a `js.map` file to help debugging
 * `"outDir": "./dist"` will compile the ts files to the `dist` directory
 * `"rootDir": "./src"` will compile the ts files from the `src` directory
+* `"noEmitOnError": true` won't compile the ts files if there was an issue
