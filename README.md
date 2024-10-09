@@ -38,3 +38,6 @@ tsc -w
 * `"outDir": "./dist"` will compile the ts files to the `dist` directory
 * `"rootDir": "./src"` will compile the ts files from the `src` directory
 * `"noEmitOnError": true` won't compile the ts files if there was an issue
+* `"noUnusedLocals": true` Enable error reporting when local variables aren't read
+* `"noUnusedParameters": true` Enable error reporting when function parameters aren't read
+* `"noImplicitReturns": true` Enable error reporting for codepaths that do not explicitly return in a function
