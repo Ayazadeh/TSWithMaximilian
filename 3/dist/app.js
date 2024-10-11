@@ -19,3 +19,13 @@ const printOutput2 = output => console.log(output);
 printOutput('printOutput ' + add(2, 6));
 printOutput2('printOutput2 ' + add(2, 6));
 printOutput('default parameters ' + arrowAdd2(2));
+const hobbies = ['Sports', 'Cooking'];
+const activeHobbies = ['Skiing'];
+activeHobbies.push(...hobbies);
+console.log('spread operator ', activeHobbies);
+const person = {
+    name: 'Mohammad',
+    age: 26
+};
+const copiedPerson = Object.assign({}, person);
+console.log('spread operator ', copiedPerson);
