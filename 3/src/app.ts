@@ -31,13 +31,13 @@ printOutput2("printOutput2 " + add(2, 6));
 printOutput("default parameters " + arrowAdd2(2));
 
 // spread operator
-const hobbies = ["Sports", "Cooking"];
+const hobbies = ["Sports", "Cooking", "swimming"];
 const activeHobbies = ["Skiing"];
 activeHobbies.push(...hobbies);
 console.log("spread operator ", activeHobbies);
 
 const person = {
-  name: "Mohammad",
+  firstName: "Mohammad",
   age: 26,
 };
 
@@ -53,3 +53,11 @@ const sum = (...numbers: number[]) => {
 
 const addedNumbers = sum(2, 5, 10, 20, 100, -30)
 console.log('rest parameters: ', addedNumbers);
+
+// array & object destructuring
+const [ hobby1, hobby2, ...remainingHobbies ] = hobbies;
+console.log(hobbies);
+console.log('array destructuring: ', hobby1, hobby2, remainingHobbies);
+
+const { firstName: userName, age } = person;
+console.log('object destructuring: ', userName, age);
