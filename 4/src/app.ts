@@ -3,7 +3,7 @@ class Department {
     // private name: string;
     private employees: string[] = []; // we use private modifier to make sure that we can't access this property from outside the class
 
-    constructor(private id: string, private name: string) { // Shorthand Initialization
+    constructor(private readonly id: string, private name: string) { // Shorthand Initialization
         // using just this syntax in ts instead of writing the properties in the constructor or defining them in the class
         // this.id = id;
         // this.name = n;
@@ -14,6 +14,7 @@ class Department {
     }
 
     addEmployee(employee: string) {
+        // this.id = 'id2'; // error because id is readonly
         this.employees.push(employee);
     }   
 
