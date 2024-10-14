@@ -1,13 +1,16 @@
 class Department {
-    name: string; // public modifier that is default, makes this property accessible from outside the class
+    // private id: string;
+    // private name: string;
     private employees: string[] = []; // we use private modifier to make sure that we can't access this property from outside the class
 
-    constructor(n: string) {
-        this.name = n;
+    constructor(private id: string, private name: string) { // Shorthand Initialization
+        // using just this syntax in ts instead of writing the properties in the constructor or defining them in the class
+        // this.id = id;
+        // this.name = n;
     }
 
     describe(this: Department) {
-        console.log('Department: ' + this.name);
+        console.log(`Department (${this.id}): ${this.name}`);
     }
 
     addEmployee(employee: string) {
@@ -20,12 +23,11 @@ class Department {
     }
 }
 
-const accounting = new Department('Accounting');
+const accounting = new Department('id1', 'Accounting');
 
 console.log(accounting);
 accounting.describe();
-accounting.name = "IT"
-accounting.describe()
+// accounting.name = "IT" // error because name is private
 
 accounting.addEmployee('Mohammad');
 accounting.addEmployee('Max');
