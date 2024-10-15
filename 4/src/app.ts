@@ -24,17 +24,52 @@ class Department {
     }
 }
 
-const accounting = new Department('id1', 'Accounting');
+const baseDepartment = new Department('id1', 'baseDepartment');
 
-console.log(accounting);
-accounting.describe();
+console.log(baseDepartment);
+baseDepartment.describe();
 // accounting.name = "IT" // error because name is private
 
-accounting.addEmployee('Mohammad');
-accounting.addEmployee('Max');
-accounting.printEmployeeInformation();
+baseDepartment.addEmployee('Mohammad');
+baseDepartment.addEmployee('Max');
+baseDepartment.printEmployeeInformation();
 
-// accounting.employees[2] = 'Ayaz'; // this is a bug, we want to make sure that here we can add employee just by using addEmployee method
+// baseDepartment.employees[2] = 'Ayaz'; // this is a bug, we want to make sure that here we can add employee just by using addEmployee method
 
-// const accountingCopy = { name: "Dummy", describe: accounting.describe }; // has error
-// accountingCopy.describe();
+// const baseCopy = { name: "Dummy", describe: baseDepartment.describe }; // has error
+// baseCopy.describe();
+
+// inheritance
+
+// ITDepartment
+class ITDepartment extends Department {
+    constructor(id: string, public admins: string[]) {
+        super(id, 'IT');
+    }
+}
+
+const itDep = new ITDepartment('id2', ['Mohammad']);
+itDep.describe()
+console.log(itDep);
+itDep.addEmployee('Ayaz');
+
+// AccountingDepartment
+class AccountingDepartment extends Department { 
+    constructor(id: string, private reports: string[]) {
+        super(id, 'Accounting');
+    }
+
+    addReport(text: string) {
+        this.reports.push(text);
+    }
+
+    printReports() {
+        console.log('reports: ', this.reports);
+    }
+}
+
+const accountingDep = new AccountingDepartment('id3', []);
+accountingDep.describe()
+console.log(accountingDep);
+accountingDep.addReport('Something went wrong...');
+accountingDep.printReports();
