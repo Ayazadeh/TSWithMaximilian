@@ -12,49 +12,65 @@ class Department {
         this.employees.push(employee);
     }
     printEmployeeInformation() {
-        console.log('employees length: ', this.employees.length);
-        console.log('employees: ', this.employees);
+        console.log("employees length: ", this.employees.length);
+        console.log("employees: ", this.employees);
     }
 }
-const baseDepartment = new Department('id1', 'baseDepartment');
+const baseDepartment = new Department("id1", "baseDepartment");
 console.log(baseDepartment);
 baseDepartment.describe();
-baseDepartment.addEmployee('Mohammad');
-baseDepartment.addEmployee('Max');
+baseDepartment.addEmployee("Mohammad");
+baseDepartment.addEmployee("Max");
 baseDepartment.printEmployeeInformation();
 class ITDepartment extends Department {
     constructor(id, admins) {
-        super(id, 'IT');
+        super(id, "IT");
         this.admins = admins;
     }
 }
-const itDep = new ITDepartment('id2', ['Mohammad']);
+const itDep = new ITDepartment("id2", ["Mohammad"]);
 itDep.describe();
 console.log(itDep);
-itDep.addEmployee('Ayaz');
+itDep.addEmployee("Ayaz");
 class AccountingDepartment extends Department {
+    get mostRecentReport() {
+        if (this.lastReport) {
+            return this.lastReport;
+        }
+        throw new Error("No report found.");
+    }
+    set mostRecentReport(value) {
+        if (!value) {
+            throw new Error("Please pass in a valid value!");
+        }
+        this.addReport(value);
+    }
     constructor(id, reports) {
-        super(id, 'Accounting');
+        super(id, "Accounting");
         this.reports = reports;
+        this.lastReport = reports[0];
     }
     addEmployee(name) {
-        if (name === 'Max') {
+        if (name === "Max") {
             return;
         }
         this.employees.push(name);
     }
     addReport(text) {
         this.reports.push(text);
+        this.lastReport = text;
     }
     printReports() {
-        console.log('reports: ', this.reports);
+        console.log("reports: ", this.reports);
     }
 }
-const accountingDep = new AccountingDepartment('id3', []);
+const accountingDep = new AccountingDepartment("id3", []);
 accountingDep.describe();
 console.log(accountingDep);
-accountingDep.addReport('Something went wrong...');
+accountingDep.mostRecentReport = "Year End Report";
+accountingDep.addReport("Something went wrong...");
+console.log('mostRecentReport: ', accountingDep.mostRecentReport);
 accountingDep.printReports();
-accountingDep.addEmployee('Max');
-accountingDep.addEmployee('Mohammad');
+accountingDep.addEmployee("Max");
+accountingDep.addEmployee("Mohammad");
 accountingDep.printEmployeeInformation();
