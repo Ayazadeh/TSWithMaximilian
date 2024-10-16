@@ -1,7 +1,12 @@
 class Department {
     // private id: string;
     // private name: string;
-    private employees: string[] = []; // we use private modifier to make sure that we can't access this property from outside the class
+
+    // we use private modifier to make sure that we can't access this property from outside the class
+    // private employees: string[] = []; 
+
+    // we use protected modifier to make sure that we can't access this property from outside the class but we can access it from child classes
+    protected employees: string[] = []; 
 
     constructor(private readonly id: string, private name: string) { // Shorthand Initialization
         // using just this syntax in ts instead of writing the properties in the constructor or defining them in the class
@@ -59,6 +64,14 @@ class AccountingDepartment extends Department {
         super(id, 'Accounting');
     }
 
+    // override method of Base class
+    addEmployee(name: string) {
+        if (name === 'Max') {
+            return;
+        }
+        this.employees.push(name);
+    }
+
     addReport(text: string) {
         this.reports.push(text);
     }
@@ -73,3 +86,6 @@ accountingDep.describe()
 console.log(accountingDep);
 accountingDep.addReport('Something went wrong...');
 accountingDep.printReports();
+accountingDep.addEmployee('Max');
+accountingDep.addEmployee('Mohammad');
+accountingDep.printEmployeeInformation();
