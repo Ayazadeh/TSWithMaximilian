@@ -1,4 +1,5 @@
 class Department {
+    static fiscalYear = 2020; // static property
 	// private id: string;
 	// private name: string;
 
@@ -13,7 +14,15 @@ class Department {
 		// using just this syntax in ts instead of writing the properties in the constructor or defining them in the class
 		// this.id = id;
 		// this.name = n;
+
+        // console.log(this.fiscalYear); // error because fiscalYear is a static property
+        console.log(Department.fiscalYear); 
 	}
+
+    // static method    
+    static createEmployee(name: string) {
+        return { name: name };
+    }
 
 	describe(this: Department) {
 		console.log(`Department (${this.id}): ${this.name}`);
@@ -29,6 +38,10 @@ class Department {
 		console.log("employees: ", this.employees);
 	}
 }
+
+// we call static method directly on the class
+const employee1 = Department.createEmployee("Ali");
+console.log('static method: ', employee1, Department.fiscalYear );
 
 const baseDepartment = new Department("id1", "baseDepartment");
 
