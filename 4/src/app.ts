@@ -1,4 +1,4 @@
-class Department {
+abstract class Department {
     static fiscalYear = 2020; // static property
 	// private id: string;
 	// private name: string;
@@ -9,14 +9,16 @@ class Department {
 	// we use protected modifier to make sure that we can't access this property from outside the class but we can access it from child classes
 	protected employees: string[] = [];
 
-	constructor(private readonly id: string, private name: string) {
+	constructor(protected readonly id: string, private name: string) {
+		console.log(this.name);
+		
 		// Shorthand Initialization
 		// using just this syntax in ts instead of writing the properties in the constructor or defining them in the class
 		// this.id = id;
 		// this.name = n;
 
         // console.log(this.fiscalYear); // error because fiscalYear is a static property
-        console.log(Department.fiscalYear); 
+        console.log('fiscalYear: ', Department.fiscalYear); 
 	}
 
     // static method    
@@ -24,9 +26,7 @@ class Department {
         return { name: name };
     }
 
-	describe(this: Department) {
-		console.log(`Department (${this.id}): ${this.name}`);
-	}
+	abstract describe(this: Department): void;
 
 	addEmployee(employee: string) {
 		// this.id = 'id2'; // error because id is readonly
@@ -39,38 +39,16 @@ class Department {
 	}
 }
 
-// we call static method directly on the class
-const employee1 = Department.createEmployee("Ali");
-console.log('static method: ', employee1, Department.fiscalYear );
-
-const baseDepartment = new Department("id1", "baseDepartment");
-
-console.log(baseDepartment);
-baseDepartment.describe();
-// accounting.name = "IT" // error because name is private
-
-baseDepartment.addEmployee("Mohammad");
-baseDepartment.addEmployee("Max");
-baseDepartment.printEmployeeInformation();
-
-// baseDepartment.employees[2] = 'Ayaz'; // this is a bug, we want to make sure that here we can add employee just by using addEmployee method
-
-// const baseCopy = { name: "Dummy", describe: baseDepartment.describe }; // has error
-// baseCopy.describe();
-
-// inheritance
-
 // ITDepartment
 class ITDepartment extends Department {
 	constructor(id: string, public admins: string[]) {
 		super(id, "IT");
 	}
-}
 
-const itDep = new ITDepartment("id2", ["Mohammad"]);
-itDep.describe();
-console.log(itDep);
-itDep.addEmployee("Ayaz");
+	describe() {
+		console.log('IT Department - ID: ' + this.id);
+	}
+}
 
 // AccountingDepartment
 class AccountingDepartment extends Department {
@@ -95,6 +73,10 @@ class AccountingDepartment extends Department {
 		super(id, "Accounting");
 		this.lastReport = reports[0];
 	}
+	
+	describe() {
+		console.log('Accounting Department - ID: ' + this.id);
+	}
 
 	// override method of Base class
 	addEmployee(name: string) {
@@ -114,21 +96,32 @@ class AccountingDepartment extends Department {
 	}
 }
 
+// we call static method directly on the class
+const employee1 = Department.createEmployee("Ali");
+console.log('static method: ', employee1, Department.fiscalYear );
+
+// instances of classes
+
+// const baseDepartment = new Department("id1", "baseDepartment"); // error because we can't create an instance of an abstract class
+const itDep = new ITDepartment("id2", ["Mohammad"]);
 const accountingDep = new AccountingDepartment("id3", []);
+
+itDep.describe();
+console.log(itDep);
+itDep.addEmployee("Ayaz");
+
 accountingDep.describe();
 console.log(accountingDep);
-
-// call getter
-// console.log(accountingDep.mostRecentReport); // error because lastReport is empty
+accountingDep.addReport("Something went wrong...");
+accountingDep.printReports();
+accountingDep.addEmployee("Max");
+accountingDep.addEmployee("Mohammad");
+accountingDep.printEmployeeInformation();
 
 // call setter
 // accountingDep.mostRecentReport = ""; // error 
 accountingDep.mostRecentReport = "Year End Report"; 
 
-accountingDep.addReport("Something went wrong...");
 // call getter
 console.log('mostRecentReport: ', accountingDep.mostRecentReport);
-accountingDep.printReports();
-accountingDep.addEmployee("Max");
-accountingDep.addEmployee("Mohammad");
-accountingDep.printEmployeeInformation();
+

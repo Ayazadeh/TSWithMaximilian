@@ -4,13 +4,11 @@ class Department {
         this.id = id;
         this.name = name;
         this.employees = [];
-        console.log(Department.fiscalYear);
+        console.log(this.name);
+        console.log('fiscalYear: ', Department.fiscalYear);
     }
     static createEmployee(name) {
         return { name: name };
-    }
-    describe() {
-        console.log(`Department (${this.id}): ${this.name}`);
     }
     addEmployee(employee) {
         this.employees.push(employee);
@@ -21,24 +19,15 @@ class Department {
     }
 }
 Department.fiscalYear = 2020;
-const employee1 = Department.createEmployee("Ali");
-console.log('static method: ', employee1, Department.fiscalYear);
-const baseDepartment = new Department("id1", "baseDepartment");
-console.log(baseDepartment);
-baseDepartment.describe();
-baseDepartment.addEmployee("Mohammad");
-baseDepartment.addEmployee("Max");
-baseDepartment.printEmployeeInformation();
 class ITDepartment extends Department {
     constructor(id, admins) {
         super(id, "IT");
         this.admins = admins;
     }
+    describe() {
+        console.log('IT Department - ID: ' + this.id);
+    }
 }
-const itDep = new ITDepartment("id2", ["Mohammad"]);
-itDep.describe();
-console.log(itDep);
-itDep.addEmployee("Ayaz");
 class AccountingDepartment extends Department {
     get mostRecentReport() {
         if (this.lastReport) {
@@ -57,6 +46,9 @@ class AccountingDepartment extends Department {
         this.reports = reports;
         this.lastReport = reports[0];
     }
+    describe() {
+        console.log('Accounting Department - ID: ' + this.id);
+    }
     addEmployee(name) {
         if (name === "Max") {
             return;
@@ -71,13 +63,19 @@ class AccountingDepartment extends Department {
         console.log("reports: ", this.reports);
     }
 }
+const employee1 = Department.createEmployee("Ali");
+console.log('static method: ', employee1, Department.fiscalYear);
+const itDep = new ITDepartment("id2", ["Mohammad"]);
 const accountingDep = new AccountingDepartment("id3", []);
+itDep.describe();
+console.log(itDep);
+itDep.addEmployee("Ayaz");
 accountingDep.describe();
 console.log(accountingDep);
-accountingDep.mostRecentReport = "Year End Report";
 accountingDep.addReport("Something went wrong...");
-console.log('mostRecentReport: ', accountingDep.mostRecentReport);
 accountingDep.printReports();
 accountingDep.addEmployee("Max");
 accountingDep.addEmployee("Mohammad");
 accountingDep.printEmployeeInformation();
+accountingDep.mostRecentReport = "Year End Report";
+console.log('mostRecentReport: ', accountingDep.mostRecentReport);
