@@ -46,6 +46,13 @@ class AccountingDepartment extends Department {
         this.reports = reports;
         this.lastReport = reports[0];
     }
+    static getInstance() {
+        if (this.instance) {
+            return this.instance;
+        }
+        this.instance = new AccountingDepartment("id3", []);
+        return this.instance;
+    }
     describe() {
         console.log('Accounting Department - ID: ' + this.id);
     }
@@ -66,7 +73,9 @@ class AccountingDepartment extends Department {
 const employee1 = Department.createEmployee("Ali");
 console.log('static method: ', employee1, Department.fiscalYear);
 const itDep = new ITDepartment("id2", ["Mohammad"]);
-const accountingDep = new AccountingDepartment("id3", []);
+const accountingDep = AccountingDepartment.getInstance();
+const accountingDep2 = AccountingDepartment.getInstance();
+console.log(accountingDep, accountingDep2);
 itDep.describe();
 console.log(itDep);
 itDep.addEmployee("Ayaz");

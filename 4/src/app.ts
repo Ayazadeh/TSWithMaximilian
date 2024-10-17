@@ -53,6 +53,7 @@ class ITDepartment extends Department {
 // AccountingDepartment
 class AccountingDepartment extends Department {
 	private lastReport: string;
+	private static instance: AccountingDepartment;
 
     // getter for getting access to private property
 	get mostRecentReport() {
@@ -69,9 +70,19 @@ class AccountingDepartment extends Department {
         this.addReport(value);
     } 
 
-	constructor(id: string, private reports: string[]) {
+	private constructor(id: string, private reports: string[]) {
 		super(id, "Accounting");
 		this.lastReport = reports[0];
+	}
+
+	static getInstance() {
+		// in static methods 'this' is refering to the class itself
+		// AccountingDepartment.instance = this.instance;
+		if (this.instance) {
+			return this.instance;
+		}
+		this.instance = new AccountingDepartment("id3", []);
+		return this.instance;
 	}
 	
 	describe() {
@@ -104,7 +115,13 @@ console.log('static method: ', employee1, Department.fiscalYear );
 
 // const baseDepartment = new Department("id1", "baseDepartment"); // error because we can't create an instance of an abstract class
 const itDep = new ITDepartment("id2", ["Mohammad"]);
-const accountingDep = new AccountingDepartment("id3", []);
+// const accountingDep = new AccountingDepartment("id3", []); // error because of private constructor
+// so because of private constructor we must get access to the class through a static method 'getInstance()'
+// Singleton pattern: we can't create more than one instance of a class
+const accountingDep = AccountingDepartment.getInstance();
+const accountingDep2 = AccountingDepartment.getInstance();
+// both of them are pointing to the same instance
+console.log(accountingDep, accountingDep2);
 
 itDep.describe();
 console.log(itDep);
