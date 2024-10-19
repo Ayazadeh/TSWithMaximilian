@@ -2,11 +2,13 @@
 // recommendation: use capitalize first letter for interface name
 
 interface Greetable {
-    name: string;
+    readonly name: string;
 
     greet(phrase: string): void;
 }
 
+// we can implement more than one interface by separating them by comma
+// example: class Person implements Greetable, AnotherInterface
 class Person implements Greetable {
     name: string;
     age = 30;
@@ -23,6 +25,7 @@ class Person implements Greetable {
 let user1: Greetable;
 
 user1 = new Person('Mohammad');
+// user1.name = 'Max'; // error because name is readonly
 
 user1.greet('Hi there - I am');
 console.log(user1);
