@@ -1,9 +1,14 @@
 // interface describe a structure of an object
 // recommendation: use capitalize first letter for interface name
 
-interface Greetable {
+// inheritance in interfaces
+interface Named {
     readonly name: string;
+}
 
+// we can extend more than one interface by separating them by comma
+// example: interface Greetable extends Named, AnotherInterface
+interface Greetable extends Named {
     greet(phrase: string): void;
 }
 
