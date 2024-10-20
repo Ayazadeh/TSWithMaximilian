@@ -4,6 +4,7 @@
 // inheritance in interfaces
 interface Named {
 	readonly name: string;
+    outputName?: string; // optional property
 }
 
 // we can extend more than one interface by separating them by comma
