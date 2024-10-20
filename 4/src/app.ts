@@ -5,6 +5,7 @@
 interface Named {
 	readonly name: string;
     outputName?: string; // optional property
+    optionalMethod?(): void; // optional method
 }
 
 // we can extend more than one interface by separating them by comma
