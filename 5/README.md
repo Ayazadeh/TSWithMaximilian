@@ -1,2 +1,2 @@
 ### includes
-* intersections
+* intersection types
