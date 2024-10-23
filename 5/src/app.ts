@@ -133,10 +133,10 @@ moveAnimal({ type: "bird", flyingSpeed: 10 });
 
 // const userInputElement = <HTMLInputElement>document.getElementById("user-input")!;
 const userInputElement = document.getElementById("user-input")! as HTMLInputElement; // alternative
-userInputElement.value = 'Hi there!';
+userInputElement.value = "Hi there!";
 
 const userInputElement2 = document.getElementById("user-input-2"); // alternative
 
 if (userInputElement2) {
-	(userInputElement2 as HTMLInputElement).value = 'Hi there2!';
+	(userInputElement2 as HTMLInputElement).value = "Hi there2!";
 }

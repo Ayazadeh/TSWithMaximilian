@@ -1,2 +1,5 @@
 ### includes
-* intersection types
+* Intersection Types
+* Type Guards
+* Discriminated Unions
+* Type Casting
