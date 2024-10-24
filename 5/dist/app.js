@@ -76,3 +76,16 @@ const errorBag = {
 };
 console.log('----> index types 👇');
 console.log('errorBag: ', errorBag);
+function newAdd(a, b) {
+    if (typeof a === "string" || typeof b === "string") {
+        return a.toString() + b.toString();
+    }
+    return a + b;
+}
+const result = newAdd("Mohammad", " Ayazadeh");
+result.split(" ");
+const result2 = newAdd(10, ' Max');
+result2.split(" ");
+console.log('function overloads: 👇');
+console.log('result: ', result);
+console.log('result2: ', result2);

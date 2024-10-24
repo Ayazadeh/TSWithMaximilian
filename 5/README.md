@@ -4,3 +4,4 @@
 * Discriminated Unions
 * Type Casting
 * Index Types
+* Function Overloads

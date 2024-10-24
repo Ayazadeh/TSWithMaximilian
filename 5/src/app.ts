@@ -156,3 +156,29 @@ const errorBag: ErrorContainer = {
 };
 console.log('----> index types 👇');
 console.log('errorBag: ', errorBag);
+
+// End index types
+
+// function overloads
+// allows us to create multiple function signatures for the same function
+
+function newAdd(a: number, b: number): number;
+function newAdd(a: string, b: string): string;
+function newAdd(a: number, b: string): string;
+function newAdd(a: string, b: number): string;
+function newAdd(a: Combinable, b: Combinable) {
+	if (typeof a === "string" || typeof b === "string") { // type guard
+		return a.toString() + b.toString();
+	}
+	return a + b;
+}
+
+const result = newAdd("Mohammad", " Ayazadeh");
+result.split(" "); // if we don't use function overloads, we can't use methods like split
+
+const result2 = newAdd(10, ' Max');
+result2.split(" ");
+
+console.log('function overloads: 👇');
+console.log('result: ', result);
+console.log('result2: ', result2);
