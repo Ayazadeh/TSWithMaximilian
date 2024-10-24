@@ -99,3 +99,7 @@ console.log('optionanl chaining: 👇');
 console.log('fetchedUserData: ', fetchedUserData);
 console.log('fetchedUserData.job: ', fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job);
 console.log('fetchedUserData.job.title: ', (_a = fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
+const userInput = 0;
+const storedData = userInput !== null && userInput !== void 0 ? userInput : "DEFAULT";
+console.log('nullish coalescing operator: 👇');
+console.log('storedData: ', storedData);

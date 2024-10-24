@@ -200,3 +200,15 @@ console.log('fetchedUserData.job: ', fetchedUserData?.job);
 console.log('fetchedUserData.job.title: ', fetchedUserData?.job?.title);
 
 // End optional chaining
+
+// Nullish Coalescing Operator
+// allows us to provide a default value if a value is null or undefined
+
+const userInput = 0;
+
+const storedData = userInput ?? "DEFAULT"; // will be DEFAULT if userInput is null or undefined
+
+console.log('nullish coalescing operator: 👇');
+console.log('storedData: ', storedData);
+
+// End nullish coalescing operator
