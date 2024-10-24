@@ -69,3 +69,10 @@ const userInputElement2 = document.getElementById("user-input-2");
 if (userInputElement2) {
     userInputElement2.value = "Hi there2!";
 }
+const errorBag = {
+    email: "Not a valid email",
+    username: "Must start with a character!",
+    1: 'test',
+};
+console.log('----> index types 👇');
+console.log('errorBag: ', errorBag);

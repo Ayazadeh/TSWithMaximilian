@@ -3,3 +3,4 @@
 * Type Guards
 * Discriminated Unions
 * Type Casting
+* Index Types

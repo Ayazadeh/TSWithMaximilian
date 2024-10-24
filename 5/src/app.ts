@@ -140,3 +140,19 @@ const userInputElement2 = document.getElementById("user-input-2"); // alternativ
 if (userInputElement2) {
 	(userInputElement2 as HTMLInputElement).value = "Hi there2!";
 }
+
+// index types
+// allows us to create objects with dynamic keys
+
+interface ErrorContainer { // { email: 'Not a valid email', username: 'Must start with a character!' }
+	[ key: string ]: string;
+}
+
+const errorBag: ErrorContainer = {
+	email: "Not a valid email",
+	username: "Must start with a character!",
+	1: 'test',
+	// test: 2, // error
+};
+console.log('----> index types 👇');
+console.log('errorBag: ', errorBag);
