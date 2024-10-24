@@ -1,4 +1,5 @@
 "use strict";
+var _a;
 const e1 = {
     name: "Mohammad",
     privileges: ["create-server"],
@@ -89,3 +90,12 @@ result2.split(" ");
 console.log('function overloads: 👇');
 console.log('result: ', result);
 console.log('result2: ', result2);
+const fetchedUserData = {
+    id: "u1",
+    name: "Mohammad",
+    job: { title: "CEO", description: "My own company" },
+};
+console.log('optionanl chaining: 👇');
+console.log('fetchedUserData: ', fetchedUserData);
+console.log('fetchedUserData.job: ', fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job);
+console.log('fetchedUserData.job.title: ', (_a = fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job) === null || _a === void 0 ? void 0 : _a.title);

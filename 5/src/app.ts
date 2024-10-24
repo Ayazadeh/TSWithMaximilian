@@ -182,3 +182,21 @@ result2.split(" ");
 console.log('function overloads: 👇');
 console.log('result: ', result);
 console.log('result2: ', result2);
+
+// End function overloads
+
+// Optional chaining
+// allows us to access properties of an object without checking if the object is null or undefined
+
+const fetchedUserData = {
+	id: "u1",
+	name: "Mohammad",
+	job: { title: "CEO", description: "My own company" }, 
+};
+
+console.log('optionanl chaining: 👇');
+console.log('fetchedUserData: ', fetchedUserData);
+console.log('fetchedUserData.job: ', fetchedUserData?.job);
+console.log('fetchedUserData.job.title: ', fetchedUserData?.job?.title);
+
+// End optional chaining
