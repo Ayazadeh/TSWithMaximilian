@@ -103,3 +103,6 @@ function createCourseGoal(title: string, description: string, date: Date): Cours
 const anotherNames: Readonly<string[]> = ['Mohammad', 'Max'];
 // anotherNames.push('Anna'); // error
 // anotherNames.pop() // error
+
+// we use union types when we want be flexible to have a different type with every method call with every function call
+// but generic types lock in a type for the whole class.
