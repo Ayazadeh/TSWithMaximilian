@@ -58,3 +58,11 @@ console.log('generic class2: ', textStorage.getItems());
 const numberStorage = new DataStorage();
 numberStorage.addItem(1);
 console.log('generic class3: ', numberStorage.getItems());
+function createCourseGoal(title, description, date) {
+    let courseGoal = {};
+    courseGoal.title = title;
+    courseGoal.description = description;
+    courseGoal.completeUntil = date;
+    return courseGoal;
+}
+const anotherNames = ['Mohammad', 'Max'];

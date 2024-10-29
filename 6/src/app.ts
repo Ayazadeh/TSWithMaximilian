@@ -85,3 +85,21 @@ console.log('generic class3: ', numberStorage.getItems());
 // console.log('generic class4: ', objectStorage.getItems());
 // objectStorage.removeItem(maxObj);
 // console.log('generic class5: ', objectStorage.getItems());
+
+interface CourseGoal {
+	title: string;
+	description: string;
+	completeUntil: Date;
+}
+
+function createCourseGoal(title: string, description: string, date: Date): CourseGoal {
+	let courseGoal: Partial<CourseGoal> = {};
+	courseGoal.title = title;
+	courseGoal.description = description;
+	courseGoal.completeUntil = date;
+	return courseGoal as CourseGoal;
+}
+
+const anotherNames: Readonly<string[]> = ['Mohammad', 'Max'];
+// anotherNames.push('Anna'); // error
+// anotherNames.pop() // error
