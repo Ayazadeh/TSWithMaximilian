@@ -7,13 +7,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 function Logger(logString) {
+    console.log('LOGGER FACTORY (first decorator)');
     return function (constructor) {
+        console.log('first decorator');
         console.log(logString);
         console.log(constructor);
     };
 }
 function WithTemplate(template, hookId) {
+    console.log('TEMPLATE FACTORY (second decorator)');
     return function (constructor) {
+        console.log('second decorator');
+        console.log('Rendering template');
         const hookEl = document.getElementById(hookId);
         const p = new constructor();
         if (hookEl) {
@@ -22,7 +27,6 @@ function WithTemplate(template, hookId) {
         }
     };
 }
-// @Logger('LOGGING - PERSON')
 let Person = class Person {
     constructor() {
         this.name = "Max";
@@ -30,7 +34,8 @@ let Person = class Person {
     }
 };
 Person = __decorate([
+    Logger('LOGGING - PERSON'),
     WithTemplate('<h1>My Person Object</h1>', 'app')
 ], Person);
-const pers = new Person();
-console.log(pers);
+const person = new Person();
+console.log(person);

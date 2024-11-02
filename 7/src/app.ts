@@ -1,14 +1,19 @@
 // it's better to name decorators with Uppercase
 
 function Logger(logString: string) {
+	console.log('LOGGER FACTORY (first decorator)');
 	return function (constructor: Function) {
+		console.log('first decorator');
 		console.log(logString);
 		console.log(constructor);
 	};
 }
 
 function WithTemplate(template: string, hookId: string) {
+	console.log('TEMPLATE FACTORY (second decorator)');
 	return function(constructor: any) {
+		console.log('second decorator');
+		console.log('Rendering template');
 		const hookEl = document.getElementById(hookId);
 		const p = new constructor();
 		if (hookEl) {
@@ -18,8 +23,7 @@ function WithTemplate(template: string, hookId: string) {
 	}
 }
 
-// @Logger('LOGGING - PERSON')
-
+@Logger('LOGGING - PERSON')
 @WithTemplate('<h1>My Person Object</h1>', 'app')
 class Person {
 	name = "Max";
@@ -29,5 +33,5 @@ class Person {
 	}
 }
 
-const pers = new Person();
-console.log(pers);
+const person = new Person();
+console.log(person);
