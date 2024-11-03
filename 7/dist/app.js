@@ -10,61 +10,65 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 function Logger(logString) {
-    console.log('LOGGER FACTORY (first decorator)');
+    console.log("LOGGER FACTORY (first decorator)");
     return function (constructor) {
-        console.log('first decorator');
+        console.log("first decorator");
         console.log(logString);
         console.log(constructor);
     };
 }
 function WithTemplate(template, hookId) {
-    console.log('TEMPLATE FACTORY (second decorator)');
-    return function (constructor) {
-        console.log('second decorator');
-        console.log('Rendering template');
-        const hookEl = document.getElementById(hookId);
-        const p = new constructor();
-        if (hookEl) {
-            hookEl.innerHTML = template;
-            hookEl.querySelector('h1').innerText = p.name;
-        }
+    console.log("TEMPLATE FACTORY (second decorator)");
+    return function (originalConstructor) {
+        return class extends originalConstructor {
+            constructor(...args) {
+                super();
+                console.log("second decorator");
+                console.log("Rendering template");
+                const hookEl = document.getElementById(hookId);
+                if (hookEl) {
+                    hookEl.innerHTML = template;
+                    hookEl.querySelector("h1").innerText = this.name;
+                }
+            }
+        };
     };
 }
 let Person = class Person {
     constructor() {
-        this.name = "Max";
+        this.name = "Mohammad Ayazadeh";
         console.log("Creating person object...");
     }
 };
 Person = __decorate([
-    Logger('LOGGING - PERSON'),
-    WithTemplate('<h1>My Person Object</h1>', 'app')
+    Logger("LOGGING - PERSON"),
+    WithTemplate("<h1>My Person Object</h1>", "app")
 ], Person);
 const person = new Person();
 console.log(person);
 // ---
 function Log(target, propertyName) {
-    console.log('---------------------');
-    console.log('Property decorator!');
+    console.log("---------------------");
+    console.log("Property decorator!");
     console.log(target, propertyName);
 }
 function Log2(target, name, descriptor) {
-    console.log('---------------------');
-    console.log('Accessor decorator!');
+    console.log("---------------------");
+    console.log("Accessor decorator!");
     console.log(target);
     console.log(name);
     console.log(descriptor);
 }
 function Log3(target, name, descriptor) {
-    console.log('---------------------');
-    console.log('Method decorator!');
+    console.log("---------------------");
+    console.log("Method decorator!");
     console.log(target);
     console.log(name);
     console.log(descriptor);
 }
 function Log4(target, name, position) {
-    console.log('---------------------');
-    console.log('Parameter decorator!');
+    console.log("---------------------");
+    console.log("Parameter decorator!");
     console.log(target);
     console.log(name);
     console.log(position);
@@ -75,7 +79,7 @@ class Product {
             this._price = val;
         }
         else {
-            throw new Error('Invalid price - should be positive!');
+            throw new Error("Invalid price - should be positive!");
         }
     }
     constructor(t, p) {
