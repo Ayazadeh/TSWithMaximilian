@@ -123,3 +123,86 @@ const p = new Printer();
 
 const button = document.querySelector("button")!;
 button.addEventListener("click", p.showMessage);
+
+// ---
+
+interface ValidatorConfig {
+	[property: string]: {
+		[validatableProp: string]: string[]
+	}
+}
+
+const registeredValidators: ValidatorConfig = {};
+
+function Required (target: any, propName: string) {
+	registeredValidators[target.constructor.name] = {
+		...registeredValidators[target.constructor.name],
+		[propName]: ["required"]
+	}
+}
+
+function PositiveNumber (target: any, propName: string) {
+	registeredValidators[target.constructor.name] = {
+		...registeredValidators[target.constructor.name],	
+		[propName]: ["positive"]
+	}
+}
+
+function Validate (obj: any) {
+	console.log('obj:', obj);
+	
+	const objValidatorConfig = registeredValidators[obj.constructor.name];
+	console.log('objValidatorConfig:', objValidatorConfig);
+
+	if (!objValidatorConfig) {
+		return true;
+	} 
+	
+	let isValid = true;
+	for (const validatorProp in objValidatorConfig) {
+		console.log('validatorProp:', validatorProp);
+		for (const validator of objValidatorConfig[validatorProp]) {
+			console.log('validator:', validator);
+			switch (validator) {
+				case 'required':
+					isValid = isValid && !!obj[validatorProp];
+					break;
+			    case 'positive':
+					isValid = isValid && obj[validatorProp] > 0;
+					break;
+			}
+		}
+	}
+	return isValid;
+}
+
+class Course {
+	@Required
+	title: string;
+	@PositiveNumber
+	price: number;
+
+	constructor (t: string, p: number) {
+		this.title = t;
+		this.price = p;
+	}
+}
+
+const courseForm = document.querySelector("form")!;
+courseForm.addEventListener('submit', Event => {
+	event?.preventDefault();
+	const titleEl = document.getElementById("title") as HTMLInputElement;
+	const priceEl = document.getElementById("price") as HTMLInputElement;
+
+	const title = titleEl.value;
+	const price = +priceEl.value;
+
+	
+	const createdCourse = new Course(title, price);
+	
+	if (!Validate(createdCourse)) {
+		throw new Error("Invalid input, please try again!");
+	}
+
+	console.log(createdCourse);
+})
