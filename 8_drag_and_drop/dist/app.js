@@ -119,14 +119,26 @@ class ProjectItem extends Component {
         this.configure();
         this.renderContent();
     }
-    configure() { }
+    dragStartHandler(event) {
+        console.log('drag start handler ', event);
+    }
+    dragEndHandler(event) {
+        console.log('drag end handler ', event);
+    }
+    configure() {
+        this.element.addEventListener("dragstart", this.dragStartHandler);
+        this.element.addEventListener("dragend", this.dragEndHandler);
+    }
     renderContent() {
         this.element.querySelector("h2").textContent = this.project.title;
         this.element.querySelector("h3").textContent = this.persons + ' assigned';
         this.element.querySelector("p").textContent = this.project.description;
     }
 }
-// ProjectList class
+__decorate([
+    Autobind
+], ProjectItem.prototype, "dragStartHandler", null);
+// ProjectList class]]
 class ProjectList extends Component {
     constructor(type) {
         super("project-list", "app", false, `${type}-projects`);
