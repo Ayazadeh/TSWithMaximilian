@@ -1,4 +1,3 @@
-import { Message } from "./../node_modules/typescript/lib/typescript.d";
 import axios from "axios";
 
 const form = document.querySelector("form")!;
