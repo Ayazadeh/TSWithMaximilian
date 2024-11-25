@@ -1,0 +1,14 @@
+{
+  "name": "10_map",
+  "version": "1.0.0",
+  "description": "a map app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "map"
+  ],
+  "author": "Mohammad Ayazadeh",
+  "license": "ISC"
+}
