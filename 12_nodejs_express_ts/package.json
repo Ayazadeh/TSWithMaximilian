@@ -4,7 +4,8 @@
   "description": "typescript",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon dist/app.js"
   },
   "keywords": [
     "typescript"
@@ -16,6 +17,8 @@
     "express": "^4.21.1"
   },
   "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.1",
     "nodemon": "^3.1.7"
   }
 }
