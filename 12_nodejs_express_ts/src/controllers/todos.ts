@@ -1,6 +1,6 @@
 // import { Request, Response, NextFunction } from "express";
 // alternative
-import { RequestHandler, response } from "express";
+import { RequestHandler } from "express";
 
 import { Todo } from "../models/todo";
 
